@@ -3,3 +3,4 @@
 cd app
 yarn build
 exit 0
+

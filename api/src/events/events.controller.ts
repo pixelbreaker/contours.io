@@ -25,7 +25,7 @@ import { UserRole } from '../users/models/user-role.enum'
 export class EventsController {
   constructor(
     private readonly _eventsService: EventsService,
-    private readonly _entrantsService: EntrantsService,
+    private readonly _entrantsService: EntrantsService
   ) {}
 
   @Post()
@@ -44,7 +44,7 @@ export class EventsController {
   @Roles(UserRole.Admin, UserRole.Organiser)
   async addEntrant(
     @Param('id') id: string,
-    @Body() entrant: Entrant,
+    @Body() entrant: Entrant
   ): Promise<EventModel> {
     entrant.event = id
     const newEntrant = await this._entrantsService.create(entrant)
