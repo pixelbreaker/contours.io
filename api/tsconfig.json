@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es6",
+    "sourceMap": true,
+    "incremental": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "types": [
+      "node",
+      "bcryptjs",
+      "dotenv",
+      "express",
+      "jest",
+      "passport",
+      "passport-jwt",
+      "passport-local",
+      "supertest"
+    ]
+  },
+  "exclude": ["node_modules", "../node_modules"]
+}

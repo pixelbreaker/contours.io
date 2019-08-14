@@ -1,0 +1,12 @@
+{
+  "name": "contours.io_monorepo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Gabriel Mak <pixelbreaker@gmail.com>",
+  "license": "UNLICENSE",
+  "private": true,
+  "workspaces": [
+    "api",
+    "app"
+  ]
+}
