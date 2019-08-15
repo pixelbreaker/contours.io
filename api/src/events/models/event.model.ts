@@ -1,6 +1,6 @@
 import { BaseModel, schemaOptions } from '../../common/models/basemodel.model'
 import { Entrant } from '../../entrants/models/entrant.model'
-import { EventType } from './Event-type.enum'
+import { EventType } from './event-type.enum'
 import { InstanceType, prop, pre, ModelType, Ref, arrayProp } from 'typegoose'
 import { LatLon } from '../../common/types'
 import { Length } from 'class-validator'

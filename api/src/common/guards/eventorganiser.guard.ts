@@ -1,7 +1,6 @@
 import { EventsService } from '../../events/events.service'
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common'
 import { Reflector } from '@nestjs/core'
-import { UserRole } from '../../users/models/user-role.enum'
 
 @Injectable()
 export class EventOrganiserGuard implements CanActivate {
