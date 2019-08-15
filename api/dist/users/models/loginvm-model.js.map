@@ -1,1 +1,0 @@
-{"version":3,"file":"loginvm-model.js","sourceRoot":"","sources":["../../../src/users/models/loginvm-model.ts"],"names":[],"mappings":";;AAAA,+EAAoE;AACpE,mCAA6B;AAE7B,MAAa,OAAQ,SAAQ,gCAAW;IAI/B,MAAM,CAAC,GAAG,CAAC,KAAK,EAAE,WAAW,GAAG,EAAE;QACvC,OAAO,aAAI,CAAC,KAAK,EAAE,CAAC,OAAO,EAAE,GAAG,WAAW,CAAC,CAAY,CAAA;IAC1D,CAAC;CACF;AAPD,0BAOC"}
