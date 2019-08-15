@@ -1554,7 +1554,7 @@
         "signature": "b82491e2990291580288c5602d4c017238977749d52b17391f0e45d9a29be644"
       },
       "/users/gabriel/work/git/contours.io/mono/api/src/main.ts": {
-        "version": "ebfad72b20b2c4849760b1838fbcc3ee0fb877af53866d436c7a3943a531880b",
+        "version": "8acafa6a7d232aee42d7ec5438f9e466e0905b10733566243f8e899d07e82970",
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
       },
       "/users/gabriel/work/git/contours.io/mono/api/src/users/models/loginvm-model.ts": {
@@ -1600,6 +1600,7 @@
         "passport-local",
         "supertest"
       ],
+      "watch": true,
       "project": "tsconfig.build.json",
       "configFilePath": "/Users/gabriel/work/git/contours.io/mono/api/tsconfig.build.json"
     },
@@ -6624,12 +6625,12 @@
       "/users/gabriel/work/git/contours.io/mono/api/src/users/users.controller.ts",
       "/users/gabriel/work/git/contours.io/mono/api/src/users/users.module.ts",
       "/users/gabriel/work/git/contours.io/mono/api/src/app.module.ts",
-      "/users/gabriel/work/git/contours.io/mono/api/src/main.ts",
       "/users/gabriel/work/git/contours.io/mono/api/src/users/models/loginvm-model.ts",
       "/users/gabriel/work/git/contours.io/mono/node_modules/@types/jest/index.d.ts",
       "/users/gabriel/work/git/contours.io/mono/node_modules/@types/cookiejar/index.d.ts",
       "/users/gabriel/work/git/contours.io/mono/node_modules/@types/superagent/index.d.ts",
-      "/users/gabriel/work/git/contours.io/mono/node_modules/@types/supertest/index.d.ts"
+      "/users/gabriel/work/git/contours.io/mono/node_modules/@types/supertest/index.d.ts",
+      "/users/gabriel/work/git/contours.io/mono/api/src/main.ts"
     ]
   },
   "version": "3.4.3"
