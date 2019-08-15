@@ -3,4 +3,4 @@
 cd api
 yarn build
 cd ..
-now
+
