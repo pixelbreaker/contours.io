@@ -19,8 +19,8 @@ import { EventsService } from './events.service'
 import { MongoFilter } from '../common/filters/mongo'
 import { Roles } from '../common/guards/roles.decorator'
 import { RolesGuard } from '../common/guards/roles.guard'
-import { UserRole } from '../users/models/user-role.enum'
 import { Types } from 'mongoose'
+import { UserRole } from '../users/models/user-role.enum'
 
 @Controller('events')
 export class EventsController {
@@ -28,6 +28,22 @@ export class EventsController {
     private readonly _eventsService: EventsService,
     private readonly _entrantsService: EntrantsService
   ) {}
+
+  @Get()
+  @UseFilters(BadRequestFilter, MongoFilter)
+  async findAll() {
+    return this._eventsService.findAll()
+  }
+
+  @Get(':idOrSlug')
+  @UseFilters(BadRequestFilter, MongoFilter)
+  async findOne(@Param('idOrSlug') idOrSlug: string): Promise<EventModel> {
+    const q: any = Types.ObjectId.isValid(idOrSlug)
+      ? { _id: Types.ObjectId(idOrSlug) }
+      : { slug: idOrSlug }
+
+    return this._eventsService.findOne(q)
+  }
 
   @Post()
   @UseFilters(BadRequestFilter, MongoFilter)
@@ -50,15 +66,5 @@ export class EventsController {
     entrant.event = id
     const newEntrant = await this._entrantsService.create(entrant)
     return await this._eventsService.addEntrant(id, newEntrant)
-  }
-
-  @Get(':idOrSlug')
-  @UseFilters(BadRequestFilter, MongoFilter)
-  async get(@Param('idOrSlug') idOrSlug: string): Promise<EventModel> {
-    const q: any = Types.ObjectId.isValid(idOrSlug)
-      ? { _id: Types.ObjectId(idOrSlug) }
-      : { slug: idOrSlug }
-
-    return this._eventsService.findOne(q)
   }
 }
