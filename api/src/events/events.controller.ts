@@ -20,6 +20,7 @@ import { MongoFilter } from '../common/filters/mongo'
 import { Roles } from '../common/guards/roles.decorator'
 import { RolesGuard } from '../common/guards/roles.guard'
 import { UserRole } from '../users/models/user-role.enum'
+import { Types } from 'mongoose'
 
 @Controller('events')
 export class EventsController {
@@ -51,9 +52,13 @@ export class EventsController {
     return await this._eventsService.addEntrant(id, newEntrant)
   }
 
-  @Get(':id')
+  @Get(':idOrSlug')
   @UseFilters(BadRequestFilter, MongoFilter)
-  async get(@Param('id') id: string): Promise<EventModel> {
-    return this._eventsService.findOne({ _id: id })
+  async get(@Param('idOrSlug') idOrSlug: string): Promise<EventModel> {
+    const q: any = Types.ObjectId.isValid(idOrSlug)
+      ? { _id: Types.ObjectId(idOrSlug) }
+      : { slug: idOrSlug }
+
+    return this._eventsService.findOne(q)
   }
 }

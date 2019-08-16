@@ -28,7 +28,7 @@ export class EventModel extends BaseModel<EventModel> {
   @Length(8, 200)
   title: string
 
-  @prop({ select: false, unique: true })
+  @prop({ unique: true })
   slug: string
 
   @prop({ required: true, enum: EventType, default: EventType.UltraBike })
