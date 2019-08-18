@@ -6,11 +6,15 @@ export abstract class BaseService<T extends Typegoose> {
 
   async findAll(
     filter = {},
-    selectFields = ''
+    selectFields = '',
+    limit = null,
+    sort = null
   ): Promise<Array<InstanceType<T>>> {
     return this._model
       .find(filter)
       .select(selectFields.trim())
+      .limit(limit)
+      .sort(sort)
       .exec()
   }
 

@@ -7,6 +7,7 @@ import {
   Put,
   UseFilters,
   UseGuards,
+  Query,
 } from '@nestjs/common'
 import { AuthGuard } from '@nestjs/passport'
 import { BadRequestFilter } from '../common/filters/bad-request'
@@ -31,8 +32,13 @@ export class EventsController {
 
   @Get()
   @UseFilters(BadRequestFilter, MongoFilter)
-  async findAll() {
-    return this._eventsService.findAll()
+  async findAll(@Query('limit') limit: string) {
+    return this._eventsService.findAll(
+      undefined,
+      undefined,
+      Number(limit),
+      'startsAt'
+    )
   }
 
   @Get(':idOrSlug')
@@ -52,6 +58,18 @@ export class EventsController {
   async create(@Body() event: EventModel): Promise<EventModel> {
     const newEvent = await this._eventsService.create(event)
     return this._eventsService.findOne({ _id: newEvent._id })
+  }
+
+  @Put(':id')
+  @UseFilters(BadRequestFilter, MongoFilter)
+  @UseGuards(AuthGuard('jwt'), RolesGuard, EventOrganiserGuard)
+  @EventOrganiser(UserRole.Admin) // Only Admin and the event owner can edit this event
+  @Roles(UserRole.Admin, UserRole.User)
+  update(
+    @Body() updateEvent: EventModel,
+    @Param('id') id
+  ): Promise<EventModel> {
+    return this._eventsService.update(id, updateEvent)
   }
 
   @Put(':id/entrant')

@@ -8,7 +8,7 @@ async function bootstrap() {
     methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
   }
   const app = await NestFactory.create(AppModule, { cors: corsConfig })
-  app.useGlobalPipes(new ValidationPipe())
+  app.useGlobalPipes(new ValidationPipe({ skipMissingProperties: true }))
   await app.listen(process.env.PORT || 3000)
 }
 bootstrap()

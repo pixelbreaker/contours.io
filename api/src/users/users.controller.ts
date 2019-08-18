@@ -56,7 +56,7 @@ export class UsersController {
   }
 
   @Delete(':id')
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles(UserRole.Admin)
   delete(@Param('id') id, @Request() req): Promise<User> {
     return this._usersService.delete(id)
@@ -64,6 +64,7 @@ export class UsersController {
 
   @Put(':id')
   @UseFilters(BadRequestFilter, MongoFilter)
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles(UserRole.Admin, UserRole.User)
   update(@Body() updateUser: User, @Param('id') id): Promise<User> {
     return this._usersService.update(id, updateUser)
