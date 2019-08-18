@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { FC } from 'react'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import styled from 'styled-components'
 import { MEDIA_MEDIUM_UP, MEDIA_LARGE_UP } from '../constants'
+import { StaticQuery, graphql } from 'gatsby'
+import { EventEmitter } from 'events'
 
 const Logo = styled.img`
   height: 40vw;
@@ -41,18 +43,47 @@ const QuoteName = styled.div`
   width: 100%;
 `
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <Logo src="/images/logo-splash.svg" />
-    <Quote>
-      <QuoteBody>
-        “It is by riding a bicycle that you learn the contours of a country
-        best, since you have to sweat up the hills and coast down them.”
-      </QuoteBody>
-      <QuoteName>— Ernest Hemingway</QuoteName>
-    </Quote>
-  </Layout>
+const IndexPage: FC<{ data: any }> = ({ data }) => {
+  const eventList = data.allEvents.nodes
+  return (
+    <Layout>
+      <SEO title="Home" />
+      <Logo src="/images/logo-splash.svg" />
+      <Quote>
+        <QuoteBody>
+          “It is by riding a bicycle that you learn the contours of a country
+          best, since you have to sweat up the hills and coast down them.”
+        </QuoteBody>
+        <QuoteName>— Ernest Hemingway</QuoteName>
+        {eventList.map(eventItem => (
+          <div key={eventItem.slug}>{eventItem.title}</div>
+        ))}
+      </Quote>
+    </Layout>
+  )
+}
+
+const IndexContainer = () => (
+  <StaticQuery
+    query={graphql`
+      {
+        allEvents {
+          nodes {
+            id
+            slug
+            title
+            startsAt(formatString: "DD MM YYYY")
+            type
+            startLocation {
+              lat
+              lon
+            }
+          }
+        }
+      }
+    `}
+    render={data => <IndexPage data={data} />}
+  />
 )
 
-export default IndexPage
+export default IndexContainer
